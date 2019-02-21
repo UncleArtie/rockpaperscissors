@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <title>Page Title</title>
+    <script type="text/javascript"></script>
+  </head>
+
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    Right click anywhere, inspect element, and open the console. Type game() to
+    play.
+    <script>
+      let score = 0;
+      const computerPlay = () => {
+        let computerSelection = Math.floor(Math.random() * 3);
+        switch (computerSelection) {
+          case 0:
+            return "rock";
+            break;
+          case 1:
+            return "paper";
+            break;
+          case 2:
+            return "scissors";
+            break;
+        }
+      };
+      const playRound = (playerSelection, computerSelection) => {
+        playerSelection = playerSelection.toLowerCase();
+        let final;
+        let winner;
+        let loser;
+        let result = "beats";
+        switch (computerSelection) {
+          case "rock":
+            if (playerSelection == "rock") {
+              result = "ties";
+              final = "tied";
+              winner = computerSelection;
+              loser = playerSelection;
+            } else if (playerSelection == "paper") {
+              final = "win";
+              winner = playerSelection;
+              loser = computerSelection;
+              score++;
+            } else {
+              final = "lose";
+              winner = computerSelection;
+              loser = playerSelection;
+            }
+            break;
+          case "paper":
+            if (playerSelection == "paper") {
+              result = "ties";
+              final = "tied";
+              winner = computerSelection;
+              loser = playerSelection;
+            } else if (playerSelection == "scissors") {
+              final = "win";
+              winner = playerSelection;
+              loser = computerSelection;
+              score++;
+            } else {
+              final = "lose";
+              winner = computerSelection;
+              loser = playerSelection;
+            }
+            break;
+          case "scissors":
+            if (playerSelection == "scissors") {
+              result = "ties";
+              final = "tied";
+              winner = computerSelection;
+              loser = playerSelection;
+            } else if (playerSelection == "rock") {
+              final = "win";
+              winner = playerSelection;
+              loser = computerSelection;
+              score++;
+            } else {
+              final = "lose";
+              winner = computerSelection;
+              loser = playerSelection;
+            }
+            break;
+        }
+        return (
+          "You " + final + "! " + winner + " " + result + " " + loser + "."
+        );
+      };
+
+      const game = () => {
+        for (i = 0; i < 5; i++) {
+          let playerSelection = prompt("Pick rock, paper, or scissors.");
+          let computerSelection = computerPlay();
+          console.log(playRound(playerSelection, computerSelection));
+        }
+        console.log("Your final " + score + " out of five.");
+      };
+    </script>
+  </body>
+</html>
